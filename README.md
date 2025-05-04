@@ -37,4 +37,4 @@ Budget Planner  is a simple web application that helps users manage their person
 
 📅 Date-based Tracking
  
-   *Track and organize transactions by date to stay on top of monthly budgets
+   *Track and organize transactions by date to stay on top of monthly budgets 
