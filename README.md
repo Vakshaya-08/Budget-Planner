@@ -56,37 +56,29 @@ Budget Planner  is a simple web application that helps users manage their person
 
 🖥️ Home Page Output
 
-   🏠 Dashboard View Includes:
+  🏠 Dashboard View Includes:
    
-          ✅ Monthly Summary Section
+   ✅ Monthly Summary Section
           
-                    🟢 Total Income – Sum of all income entries
+   🟢 Total Income – Sum of all income entries
                     
-                    🔴 Total Expenses – Sum of all expense entries
+  🔴 Total Expenses – Sum of all expense entries
                     
-                    🟡 Remaining Balance – Difference between total income and total expenses
+  🟡 Remaining Balance – Difference between total income and total expenses
                     
-  📋 Transaction Table
-  
-           *Lists all income and expense transactions
+📋 Transaction Table
+    *Lists all income and expense transactions
            
-           *Columns include:
-           
-                *Titl
-                
-                *Amount
-                
-                *Type (Income or Expense)
-                
-                *Category
-                
-                *Note
-                
-                *Date
-                
-                *Edit and Delete buttons
+   *Columns include:
+      *Title
+      *Amount
+      *Type (Income or Expense)
+      *Category
+      *Note
+      *Date
+      *Edit and Delete buttons
 
-  ➕ Add Transaction Button
+➕ Add Transaction Button
   
-           *Leads to a form where users can add new income or expense entries
+  *Leads to a form where users can add new income or expense entries
 
