@@ -1,0 +1,137 @@
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
+const bodyParser = require('body-parser');
+
+const app = express();
+const db = new sqlite3.Database('./budget.db');
+
+// Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Create table if not exists
+db.run(`
+  CREATE TABLE IF NOT EXISTS transactions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type TEXT,
+    description TEXT,
+    amount REAL,
+    date TEXT,
+    category TEXT,
+    note TEXT
+  )
+`);
+
+const renderHTML = (transactions, income, expense, balance) => {
+  const rows = transactions.map(t => `
+    <tr>
+      <td>${t.type}</td>
+      <td>${t.description}</td>
+      <td>${t.amount}</td>
+      <td>${t.date}</td>
+      <td>${t.category}</td>
+      <td>${t.note}</td>
+      <td>
+        <a href="/edit/${t.id}">Edit</a> |
+        <a href="/delete/${t.id}">Delete</a>
+      </td>
+    </tr>
+  `).join('');
+
+  return `
+    <html>
+      <head><title>Budget Planner</title></head>
+      <body>
+        <h1>Budget Planner</h1>
+        <form method="POST" action="/add">
+          <input name="type" placeholder="income/expense" required>
+          <input name="description" placeholder="Description" required>
+          <input type="number" name="amount" placeholder="Amount" required>
+          <input type="date" name="date" required>
+          <input name="category" placeholder="Category" required>
+          <input name="note" placeholder="Note">
+          <button type="submit">Add</button>
+        </form>
+        <h2>Transactions</h2>
+        <table border="1">
+          <tr>
+            <th>Type</th><th>Description</th><th>Amount</th><th>Date</th>
+            <th>Category</th><th>Note</th><th>Actions</th>
+          </tr>
+          ${rows}
+        </table>
+        <h2>Monthly Summary</h2>
+        <p><b>Total Income:</b> ₹${income}</p>
+        <p><b>Total Expenses:</b> ₹${expense}</p>
+        <p><b>Remaining Balance:</b> ₹${balance}</p>
+      </body>
+    </html>
+  `;
+};
+
+const renderEditForm = (t) => `
+  <html>
+    <head><title>Edit Transaction</title></head>
+    <body>
+      <h1>Edit Transaction</h1>
+      <form method="POST" action="/update/${t.id}">
+        <input name="type" value="${t.type}" required>
+        <input name="description" value="${t.description}" required>
+        <input type="number" name="amount" value="${t.amount}" required>
+        <input type="date" name="date" value="${t.date}" required>
+        <input name="category" value="${t.category}" required>
+        <input name="note" value="${t.note}">
+        <button type="submit">Update</button>
+      </form>
+    </body>
+  </html>
+`;
+
+// Home
+app.get('/', (req, res) => {
+  db.all('SELECT * FROM transactions', (err, rows) => {
+    if (err) return res.send("Error");
+
+    const income = rows.filter(r => r.type === 'income').reduce((a, b) => a + b.amount, 0);
+    const expense = rows.filter(r => r.type === 'expense').reduce((a, b) => a + b.amount, 0);
+    const balance = income - expense;
+
+    res.send(renderHTML(rows, income, expense, balance));
+  });
+});
+
+// Add
+app.post('/add', (req, res) => {
+  const { type, description, amount, date, category, note } = req.body;
+  db.run(`INSERT INTO transactions (type, description, amount, date, category, note)
+          VALUES (?, ?, ?, ?, ?, ?)`,
+    [type, description, amount, date, category, note],
+    () => res.redirect('/')
+  );
+});
+
+// Delete
+app.get('/delete/:id', (req, res) => {
+  db.run('DELETE FROM transactions WHERE id = ?', [req.params.id], () => res.redirect('/'));
+});
+
+// Edit Form
+app.get('/edit/:id', (req, res) => {
+  db.get('SELECT * FROM transactions WHERE id = ?', [req.params.id], (err, row) => {
+    if (err) return res.send("Error");
+    res.send(renderEditForm(row));
+  });
+});
+
+// Update
+app.post('/update/:id', (req, res) => {
+  const { type, description, amount, date, category, note } = req.body;
+  db.run(`UPDATE transactions SET type=?, description=?, amount=?, date=?, category=?, note=?
+          WHERE id=?`,
+    [type, description, amount, date, category, note, req.params.id],
+    () => res.redirect('/')
+  );
+});
+
+app.listen(3000, () => {
+  console.log('Server running at http://localhost:3000');
+});
