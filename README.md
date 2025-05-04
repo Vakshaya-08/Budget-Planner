@@ -67,16 +67,24 @@ Budget Planner  is a simple web application that helps users manage their person
   🟡 Remaining Balance – Difference between total income and total expenses
                     
 📋 Transaction Table
-    *Lists all income and expense transactions
+
+  *Lists all income and expense transactions.
            
-   *Columns include:
-      *Title
-      *Amount
-      *Type (Income or Expense)
-      *Category
-      *Note
-      *Date
-      *Edit and Delete buttons
+  *Columns include:
+   
+   *Title
+      
+   *Amount
+      
+   *Type (Income or Expense)
+     
+   *Category
+  
+  *Note
+  
+   *Date
+    
+   *Edit and Delete buttons
 
 ➕ Add Transaction Button
   
