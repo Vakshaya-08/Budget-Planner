@@ -40,10 +40,16 @@ Budget Planner  is a simple web application that helps users manage their person
  
    *Track and organize transactions by date to stay on top of monthly budgets 
 
-   🛠️ Tools & Technologies Used
-            *JavaScript – For basic interactivity on the frontend 
-            *node.js – JavaScript runtime environment used for server-side logic
-            *Express.js – Web application framework for handling routing and middleware
-            *EJS (Embedded JavaScript Templates) – Templating engine for rendering dynamic HTML view
-            *SQLite – Lightweight and fast embedded database to store transaction data
-            *HTML & CSS – For structuring and styling the user interface
+🛠️ Tools & Technologies Used
+   
+  *JavaScript – For basic interactivity on the frontend 
+   
+  *node.js – JavaScript runtime environment used for server-side logic
+            
+  *Express.js – Web application framework for handling routing and middleware
+ 
+  *EJS (Embedded JavaScript Templates) – Templating engine for rendering dynamic HTML view
+  
+  *SQLite – Lightweight and fast embedded database to store transaction data
+  
+  *HTML & CSS – For structuring and styling the user interface
