@@ -6,17 +6,17 @@ Budget Planner  is a simple web application that helps users manage their person
 
 ➕ Add Transactions
 
-  *Add new entries for both income and expenses
+   *Add new entries for both income and expenses
 
-  *Includes fields: Title, Amount, Type (Income/Expense), Category, Note, and Date
+   *Includes fields: Title, Amount, Type (Income/Expense), Category, Note, and Date
 
 📋 View All Transactions
 
-  *Displays all transactions in a clean, tabular format
+   *Displays all transactions in a clean, tabular format
 
-  * Each row shows: Title, Amount, Type, Category, Note, Date
-
-  *Includes Edit and Delete options for each entry
+   *Each row shows: Title, Amount, Type, Category, Note, Date
+ 
+   *Includes Edit and Delete options for each entry
 
 ✏️ Edit Transactions
 
@@ -24,11 +24,11 @@ Budget Planner  is a simple web application that helps users manage their person
 
 🗑️ Delete Transactions
 
-  *Remove unnecessary transactions with a single click
+   *Remove unnecessary transactions with a single click
 
 📊 Monthly Summary
 
-  *Automatically calculates and displays:
+   *Automatically calculates and displays:
 
    🟢 Total Income
 
