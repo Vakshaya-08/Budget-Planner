@@ -53,6 +53,7 @@ Budget Planner  is a simple web application that helps users manage their person
    *SQLite – Lightweight and fast embedded database to store transaction data
   
    *HTML & CSS – For structuring and styling the user interface
+   
 
 🖥️ Home Page Output
 
